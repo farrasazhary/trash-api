@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS = 0;
 -- phpMyAdmin SQL Dump
 -- version 5.2.3
 -- https://www.phpmyadmin.net/
@@ -27,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `alternatives`
 --
 
+DROP TABLE IF EXISTS `alternatives`;
 CREATE TABLE `alternatives` (
   `id_alternatives` int NOT NULL,
   `kode` varchar(10) NOT NULL,
@@ -50,6 +52,7 @@ INSERT INTO `alternatives` (`id_alternatives`, `kode`, `nama`, `createdAt`, `upd
 -- Table structure for table `comparisons`
 --
 
+DROP TABLE IF EXISTS `comparisons`;
 CREATE TABLE `comparisons` (
   `id_comparisons` int NOT NULL,
   `id_users` int NOT NULL,
@@ -602,6 +605,7 @@ INSERT INTO `comparisons` (`id_comparisons`, `id_users`, `category`, `criteria_i
 -- Table structure for table `criteria`
 --
 
+DROP TABLE IF EXISTS `criteria`;
 CREATE TABLE `criteria` (
   `id_criteria` int NOT NULL,
   `kode` varchar(10) NOT NULL,
@@ -626,6 +630,7 @@ INSERT INTO `criteria` (`id_criteria`, `kode`, `nama`, `bobot`, `createdAt`, `up
 -- Table structure for table `rankings`
 --
 
+DROP TABLE IF EXISTS `rankings`;
 CREATE TABLE `rankings` (
   `id_rankings` int NOT NULL,
   `id_alternatives` int NOT NULL,
@@ -650,6 +655,7 @@ INSERT INTO `rankings` (`id_rankings`, `id_alternatives`, `score`, `rank`, `crea
 -- Table structure for table `sub_criteria`
 --
 
+DROP TABLE IF EXISTS `sub_criteria`;
 CREATE TABLE `sub_criteria` (
   `id_sub_criteria` int NOT NULL,
   `id_criteria` int NOT NULL,
@@ -680,6 +686,7 @@ INSERT INTO `sub_criteria` (`id_sub_criteria`, `id_criteria`, `kode`, `nama`, `b
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id_users` int NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -956,3 +963,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+SET FOREIGN_KEY_CHECKS = 1;
