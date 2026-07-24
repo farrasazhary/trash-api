@@ -71,7 +71,7 @@ const startServer = async () => {
         console.log('✅ Koneksi database berhasil');
 
         // Sinkronisasi model ke database (buat tabel jika belum ada)
-        await sequelize.sync({ alter: true });
+        await sequelize.sync();
         console.log('✅ Database tersinkronisasi');
 
         // Buat user admin default jika belum ada
