@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ==================== ROUTES ====================
-app.get('/', (req, res) => {
+app.get(['/', '/api', '/api/'], (req, res) => {
     res.json({
         message: 'SPK Penentuan Kebijakan Pengelolaan Sampah — API',
         version: '1.0.0',
