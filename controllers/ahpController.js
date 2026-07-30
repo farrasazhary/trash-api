@@ -308,7 +308,10 @@ const calculate = async (req, res) => {
                 });
             }
 
+            const parentCrit = allCriteria.find((c) => c.id_criteria == criteriaId);
             subCriteriaResults[criteriaId] = {
+                parentName: parentCrit ? parentCrit.nama : '',
+                parentKode: parentCrit ? parentCrit.kode : '',
                 labels: subCriteriaList.map((sc) => sc.nama),
                 matrix: subMatrix,
                 eigenvector: subEigen.map((e) => parseFloat(e.toFixed(6))),
@@ -329,11 +332,17 @@ const calculate = async (req, res) => {
                 id: sc.id_sub_criteria,
                 globalWeight: sc.bobot_global,
                 type: 'sub_criteria',
+                nama: sc.nama,
+                kode: sc.kode,
+                criteriaId: sc.id_criteria
             }))
             : allCriteria.map((c, i) => ({
                 id: c.id_criteria,
                 globalWeight: criteriaEigen[i],
                 type: 'criteria',
+                nama: c.nama,
+                kode: c.kode,
+                criteriaId: c.id_criteria
             }));
 
         const alternativeIds = allAlternatives.map((a) => a.id_alternatives);
@@ -347,7 +356,13 @@ const calculate = async (req, res) => {
             const altEigen = calculateEigenVector(altMatrix);
             const altCR = calculateConsistencyRatio(altMatrix, altEigen);
 
+            const parentCrit = allCriteria.find((c) => c.id_criteria == node.criteriaId);
+
             alternativeResults[node.id] = {
+                parentName: node.nama || '',
+                parentKode: node.kode || '',
+                parentCriteriaName: parentCrit ? parentCrit.nama : '',
+                parentCriteriaKode: parentCrit ? parentCrit.kode : '',
                 labels: allAlternatives.map((a) => a.nama),
                 matrix: altMatrix,
                 eigenvector: altEigen.map((e) => parseFloat(e.toFixed(6))),
